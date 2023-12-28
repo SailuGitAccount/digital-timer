@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/digital-timer/static/css/main.f855e6bc.css",
+    "main.js": "/digital-timer/static/js/main.c495e00a.js",
+    "index.html": "/digital-timer/index.html",
+    "main.f855e6bc.css.map": "/digital-timer/static/css/main.f855e6bc.css.map",
+    "main.c495e00a.js.map": "/digital-timer/static/js/main.c495e00a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.c495e00a.js"
+  ]
+}
