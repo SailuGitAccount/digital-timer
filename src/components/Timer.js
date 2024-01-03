@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-const Timer1 = () => {
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+
+const Timer = () => {
   // state to store time
   const [time, setTime] = useState(0);
 
   // state to check stopwatch running or not
   const [ticking, setTicking] = useState(false);
-  const title="Stop Watch"
+  const title = "Stop Watch";
 
   useEffect(() => {
     let intervalId;
     if (ticking) {
-      // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
+      //setting time from 0 to 1 every 10 milisecond using javascript setInterval method
       intervalId = setInterval(() => setTime(time + 1), 10);
     }
     return () => clearInterval(intervalId);
@@ -45,71 +46,60 @@ const Timer1 = () => {
   const reset = () => {
     setTime(0);
   };
-  return (<>
+  return (
     <Grid
-              item
-              key={title}
-              xs={8}
-              sm={ 8 }
-              md={4}
-              style={{textAlign: "center"}}
+      container
+      justifyContent="center"
+      alignItems="center"
+      style={{ height: "100vh", backgroundColor: "#f5f5f5" }}
+    >
+      <Card sx={{ width: "360px", padding: "20px", textAlign: "center" }}>
+        <CardHeader
+          title={title}
+          titleTypographyProps={{
+            align: "center",
+            fontSize: "32px",
+            sx: { backgroundColor: "#2196f3", color: "#fff" },
+          }}
+          subheaderTypographyProps={{ align: "center" }}
+        />
+        <CardContent>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "baseline",
+              mb: 2,
+            }}
+          >
+            <Typography variant="h2" color="text.secondary">
+              {`${hours}:${minutes.toString().padStart(2, "0")}:${seconds
+                .toString()
+                .padStart(2, "0")}:${milliseconds.toString().padStart(2, "0")}`}
+            </Typography>
+          </Box>
+        </CardContent>
+        <CardActions>
+          <Box textAlign="center" sx={{ marginX: "auto" }}>
+            <Button
+              variant="contained"
+              onClick={startAndStop}
+              sx={{ marginRight: "15px", backgroundColor: "#2196f3" }}
             >
-              <Card>
-                <CardHeader
-                  title={title}
-                  titleTypographyProps={{ align: 'center',fontSize:'32px'}}
-                  subheaderTypographyProps={{
-                    align: 'center',
-                  }}
-                  sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
-                  }}
-                />
-                <CardContent>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'baseline',
-                      mb: 2,
-                    }}
-                  >
-                    
-                    <Typography variant="h2" color="text.secondary">
-                    {hours}:{minutes.toString().padStart(2, "0")}:
-                    {seconds.toString().padStart(2, "0")}
-                    :{milliseconds.toString().padStart(2, "0")}
-                    </Typography>
-                  </Box>
-                  
-                </CardContent>
-                <CardActions>
-                  
-                  {/* <Box  sx={{
-                    textAlign:'center',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'baseline',
-                      mb: 2,
-                    }}> */}
-                    
-<Box textAlign='center' style={{marginLeft:'auto',marginRight:'auto'}}>
-        <Button variant="contained" onClick={startAndStop} style={{marginRight:'15px'}}>
-          {ticking ? "Stop" : "Start"} 
-        </Button>
-        <Button variant="contained" onClick={reset} >
-          Reset
-        </Button>
-      </Box>
-                </CardActions>
-              </Card>
-            </Grid>
-
-    </>
+              {ticking ? "Stop" : "Start"}
+            </Button>
+            <Button
+              variant="contained"
+              onClick={reset}
+              sx={{ backgroundColor: "#2196f3" }}
+            >
+              Reset
+            </Button>
+          </Box>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 };
 
-export default Timer1;
+export default Timer;
